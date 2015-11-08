@@ -1,0 +1,20 @@
+{
+  "name": "pp_frontend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node --harmony ./bin/www"
+  },
+  "dependencies": {
+    "react": "^0.x.x",
+    "react-dom": "^0.x.x",
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-react": "*",
+    "gulp-babel": "*",
+    "gulp-change": "*"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.1.2"
+  }
+}

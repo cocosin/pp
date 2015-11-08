@@ -1,0 +1,12 @@
+{
+  "name": "pp",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "jquery": "~ 2.1.4",
+    "react": "~ 0.x.x",
+    "lodash": "~3.10.1",
+    "flexboxgrid": "~6.2.0",
+    "redux": "https://cdnjs.cloudflare.com/ajax/libs/redux/3.0.4/redux.js"
+  }
+}
