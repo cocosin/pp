@@ -5,7 +5,7 @@
 let session = require('express-session'),
     MongoStore = require('connect-mongo')(session),
     bcrypt = require('bcryptjs'),
-    gen_uuid = require('gen-uuid');
+    node_uuid = require('node-uuid');
 require('rootpath')();
 
 let settings = require('settings'),
@@ -13,16 +13,23 @@ let settings = require('settings'),
     User = require('../users/user-model').User;
 
 let currentSession = session({
-    uuid: gen_uuid(),
+    uuid: node_uuid.v4(),
     name: 's128_1.3',
-    secret: '__2'
+    secret: '__2',
+    maxAge: 1000*60*60*24*14,
+    store: new MongoStore({
+        url: 'mongodb://localhost/user-sessions',
+            ttl: 24 * 24 * 60 * 60,
+            autoRemove: 'interval',
+            autoRemoveInterval: 60*24*14
+        })
 });
 
-console.log(gen_uuid());
+console.log(node_uuid.v4());
 
 let loginFail = (res) => {
     res.status(403);
-    res.send('Логин или пароль неверны');
+    res.send('Invalid email or password');
     return false;
 };
 
@@ -36,8 +43,6 @@ let sign_in = (req, res, next) => {
 
     User.find({where: {email}}).then(
         (user) => {
-            console.log(user.dataValues);
-
             if (user.dataValues.pass_hash !== password) {
                 return loginFail(res);
             }
@@ -48,6 +53,8 @@ let sign_in = (req, res, next) => {
                 role: 'default'
             };
 
+            console.log(req.session);
+
             next();
         }
     );
@@ -55,5 +62,6 @@ let sign_in = (req, res, next) => {
 
 
 module.exports = {
-    sign_in
+    sign_in,
+    currentSession
 };

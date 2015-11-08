@@ -3,19 +3,16 @@ var express = require('express');
 var router = express.Router();
 require('rootpath')();
 
-var settings = require('settings');
+var settings = require('settings'),
+    sign_in = require('../auth/login').sign_in;
 
-router.get('/', (req, res) => {
-  res.sendFile(settings.root_path + 'public/index.html');
+router.get('/users/current', function(req, res) {
+  res.send(JSON.stringify(req.session));
 });
 
-
-router.get('/users', function(req, res) {
-  res.send('respond with a resource');
-});
-
-router.post('/users', (req, res) => {
-  console.log(req.body);
+router.post('/users', sign_in, (req, res) => {
+  console.log(req, res);
+  res.redirect('/users/current');
 });
 
 module.exports = router;

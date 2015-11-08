@@ -4,8 +4,8 @@ var CommentBox = React.createClass({displayName: 'CommentBox',
     render: function() {
         return (
             <div>
-                <form action="/user/create" method="post">
-                    <input type="text" name="login"/><br/>
+                <form action="/users" method="post">
+                    <input type="text" name="email"/><br/>
                     <input type="text" name="password"/><br/>
                     <input type="submit" value="Send"/>
                 </form>

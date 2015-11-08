@@ -1,10 +1,11 @@
 /**
  * Created by Constantine on 08.11.2015.
  */
+"use strict";
 let bcrypt = require('bcryptjs'),
     Sequelize = require('sequelize');
 
-let database = require('pg-db');
+let database = require('../pg-db');
 
 let User = database.define('Users', {
     email: {
@@ -21,7 +22,7 @@ let User = database.define('Users', {
         allowNull: false,
         unique: true,
         validate: {
-            is: /^[a-zA-Z0-9](?:[a-zA-Z0-9_-]*[a-zA-Z0-9])?$/,
+            is: /^[a-zA-Z0-9](?:[a-zA-Z0-9_\-]*[a-zA-Z0-9])?$/,
             len: [3, 15]
         },
         field: 'login'
@@ -40,7 +41,7 @@ let User = database.define('Users', {
         type: Sequelize.STRING(20),
         field: 'first_name',
         validate: {
-            is: /^[a-zA-Zà-ÿÀ-ß¸¨'][a-zA-Z-à-ÿÀ-ß¸¨' ]+[a-zA-Zà-ÿÀ-ß¸¨']?$/
+            is: /^[a-zA-Zà-ÿÀ-ß'][a-zA-Z-à-ÿÀ-ß' ]+[a-zA-Zà-ÿÀ-ß']?$/
         }
     },
     last_name: {

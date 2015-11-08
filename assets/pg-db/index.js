@@ -4,13 +4,13 @@
 'use strict';
 let Sequelize = require('sequelize');
 
-let config = require('config');
+let config = require('../config');
 
-let sequelize = new Sequelize(config.get('pg:database'), config.get('pg:user'), config.get('pg:password'), {
+let sequelize = new Sequelize(config.pg.database, config.pg.user, config.pg.password, {
     dialect: 'postgres',
     protocol: "postgres",
-    host: config.get('pg:host'),
-    port: config.get('pg:port')
+    host: config.pg.host,
+    port: config.pg.port
 });
 
 module.exports = sequelize;
