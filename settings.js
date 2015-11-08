@@ -4,5 +4,6 @@
 'use strict';
 
 module.exports = {
-    root_path: __dirname + '/'
+    root_path: __dirname + '/',
+    source_path: __dirname + '/assets'
 };

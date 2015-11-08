@@ -3,10 +3,9 @@
 (function () {
     'use strict';
 
-    var shit = "asd";
     var CommentBox = React.createClass({ displayName: 'CommentBox',
         render: function render() {
-            return React.createElement("div", null, "Welcome, ", shit);
+            return React.createElement("div", null, React.createElement("form", { action: "/user/create", method: "post" }, React.createElement("input", { type: "text", name: "login" }), React.createElement("br", null), React.createElement("input", { type: "text", name: "password" }), React.createElement("br", null), React.createElement("input", { type: "submit", value: "Send" })));
         }
     });
     ReactDOM.render(React.createElement(CommentBox, null), document.getElementById('content'));
